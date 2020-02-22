@@ -1,12 +1,21 @@
 import React, {useState} from 'react';
+import Calendar from "./Calendar";
 
 const Form = (props) => {
 
-    const [tripType, setTripType] = useState('Round trip');
+    const [tripType, setTripType] = useState('round trip');
     const [hasAwardTicket, setAwardTicket] = useState(false);
     const [departure, setDeparture] = useState('Cape Town');
     const [destination, setDestination] = useState('');
+    const [departureDate, setDepartureDate] = useState('2020-03-05T08:30:00+02:00');
+    const [returnDate, setReturnDate] = useState('2020-04-06T14:30:00+02:00');
+    const [datePickerStyle, setDatePickerStyle] = useState("hide");
 
+    const [bookerMenuRadioClasses, setBookerMenuRadioClasses] = useState({
+        roundTrip: "radio-input-selected",
+        oneWay: "",
+        multiCity: ""
+    });
     const departureInputBox = React.createRef();
     const destinationInputBox = React.createRef();
 
@@ -17,15 +26,41 @@ const Form = (props) => {
             destinationInputBox.current.focus();
     };
 
+    const handleBookerRadioButtons = (e) => {
+        const value = e.target.value;
+        setTripType(value);
+        if (value === "round trip") {
+            let roundTrip = "radio-input-selected";
+            let oneWay = "";
+            let multiCity = "";
+            setBookerMenuRadioClasses({roundTrip: roundTrip, oneWay: oneWay, multiCity: multiCity});
+        } else if (value === "one way") {
+            let roundTrip = "";
+            let oneWay = "radio-input-selected";
+            let multiCity = "";
+            setBookerMenuRadioClasses({roundTrip: roundTrip, oneWay: oneWay, multiCity: multiCity});
+        } else if (value === "multi-city") {
+            let roundTrip = "";
+            let oneWay = "";
+            let multiCity = "radio-input-selected";
+            setBookerMenuRadioClasses({roundTrip: roundTrip, oneWay: oneWay, multiCity: multiCity});
+        }
+    };
+
+    const handleDatePick = () => {
+        const style = datePickerStyle === "hide" ? "show" : "hide";
+        setDatePickerStyle(style);
+    };
+
 
     return (
         <form onSubmit={(e) => {
             const booking = {
                 "departure": departure,
                 "destination": destination,
-                "departureDate": "2021-03-05T08:30:00+02:00",
-                "isRoundTrip": true,
-                "returnDate": "2021-03-30T18:30:00+02:00",
+                "departureDate": departureDate,
+                "tripType": tripType,
+                "returnDate": returnDate,
                 "numberOfPassengers": 1,
                 "cabin": "ECO",
                 "price": 1050
@@ -33,38 +68,38 @@ const Form = (props) => {
             props.onSubmit(e, booking);
         }}>
             <div className="booker-menu">
-                <a>
+                <a className={bookerMenuRadioClasses.roundTrip}>
                     <input
                         type="radio"
                         name="triptype"
-                        id="Round trip"
-                        value="Round trip"
-                        checked={tripType === 'Round trip'}
-                        onChange={e => setTripType(e.target.value)}
+                        id="round trip"
+                        value="round trip"
+                        checked={tripType === 'round trip'}
+                        onChange={e => handleBookerRadioButtons(e)}
                     />
-                    <label htmlFor="Round trip"> Round trip</label>
+                    <label htmlFor="round trip"> Round trip</label>
                 </a>
-                <a>
+                <a className={bookerMenuRadioClasses.oneWay}>
                     <input
                         type="radio"
                         name="triptype"
-                        id="One way"
-                        value="One way"
-                        checked={tripType === 'One way'}
-                        onChange={e => setTripType(e.target.value)}
+                        id="one way"
+                        value="one way"
+                        checked={tripType === 'one way'}
+                        onChange={handleBookerRadioButtons}
                     />
-                    <label htmlFor="One way"> One way</label>
+                    <label htmlFor="one way"> One way</label>
                 </a>
-                <a>
+                <a className={bookerMenuRadioClasses.multiCity}>
                     <input
                         type="radio"
                         name="triptype"
-                        id="Multi-city"
-                        value="Multi-city"
-                        checked={tripType === 'Multi-city'}
-                        onChange={e => setTripType(e.target.value)}
+                        id="multi-city"
+                        value="multi-city"
+                        checked={tripType === 'multi-city'}
+                        onChange={handleBookerRadioButtons}
                     />
-                    <label htmlFor="Multi-city"> Multi-city</label>
+                    <label htmlFor="multi-city"> Multi-city</label>
                 </a>
                 <a>
                     <input
@@ -79,7 +114,7 @@ const Form = (props) => {
             </div>
 
             <div>
-                <div className="input-box" onClick={() => handleInputBoxClick(1)} >
+                <div className="input-box" onClick={() => handleInputBoxClick(1)}>
                     <div className="icon-wrapper">
                         <i className="fas fa-plane-departure"/>
                     </div>
@@ -111,15 +146,20 @@ const Form = (props) => {
                             ref={destinationInputBox}
                         />
                         <label htmlFor="to">To</label>
+                        <div className="all-destination">
+                            <i className="fas fa-globe-africa"/>
+                            See all destinations
+                        </div>
                     </div>
                 </div>
 
-                <div className="book-details">
-                    <div>Dates</div>
+                <div className="book-details" onClick={handleDatePick}>
+                    <div className="details-box">Dates</div>
                     <i className="fas fa-calendar-alt"/>
                 </div>
+                <Calendar datePickerStyle={datePickerStyle} />
                 <div className="book-details" title="Number of passengers 1">
-                    <div className="flex-flow-col ">
+                    <div className="flex-flow-col details-box">
                         <span id="cabin">Cabin</span>
                         <span>ECO</span>
                         <span id="class">Class</span>

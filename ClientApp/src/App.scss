@@ -7,11 +7,13 @@
 $colors: (
         primary: #232B38,
         primary-light: #2B3947,
-        accent: #E81932
+        accent: #E81932,
+        myBlue: #5896EA
 );
 
 $padding: 15px;
 $margin: 15px;
+$pageHeight: 600px;
 
 @function color($color-name) {
   @return map-get($colors, $color-name);
@@ -26,6 +28,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   nav {
 
     a {
@@ -87,12 +90,13 @@ a:focus {
   background-image: url("res/bg_img.jpg");
   background-size: cover;
   background-position: center center;
-  height: 564px;
+  height: $pageHeight;
   color: white;
 
   h1 {
     text-align: center;
     margin-bottom: 2*$margin;
+
     span {
       display: block;
     }
@@ -111,7 +115,7 @@ a:focus {
 
 .overlay {
   width: 100%;
-  height: 564px;
+  height: $pageHeight;
   background-color: #333;
   opacity: 0.5;
   position: absolute;
@@ -159,7 +163,7 @@ a:focus {
 }
 
 .btn:hover {
-  background-color: rgba(255,255,255,.15);
+  background-color: rgba(255, 255, 255, .15);
   border-color: #fff;
 }
 
@@ -181,7 +185,7 @@ a:focus {
 }
 
 form {
-  background-color: rgba(35,43,56, .6);
+  background-color: rgba(35, 43, 56, .6);
   padding: 15px 20px;
   width: 78%;
   margin-left: auto;
@@ -229,13 +233,42 @@ form {
   }
 
   input:not(:placeholder-shown) ~ label,
-  input[type="text"]:focus ~ label{
+  input[type="text"]:focus ~ label {
     transform: translate(-12.125rem, -2.3rem);
     cursor: pointer;
     font-size: 12px;
     opacity: 1;
-    color: #5896EA;
+    color: color(myBlue);
   }
+}
+
+.input-box:nth-child(2) input[type="text"]:focus ~ .all-destination {
+  display: block;
+}
+
+.all-destination {
+  display: none;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 25px;
+  right: 26.8%;
+  padding: 4px 2px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  width: 500px;
+  outline: color(myBlue) solid 1px;
+
+  i {
+    margin-left: 25px;
+    margin-right: 6px;
+  }
+}
+
+.all-destination:hover {
+  background-color: color(myBlue);
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .booker-menu {
@@ -244,13 +277,8 @@ form {
   font-size: 14px;
 
   a {
-    border-bottom: 3px solid transparent;
     margin-right: 15px;
-    padding-bottom: 3px;
-  }
-
-  a:first-child {
-    border-bottom: 3px solid color(accent);
+    padding: 0 5px 3px 5px;
   }
 
   a:last-child {
@@ -261,6 +289,10 @@ form {
     cursor: pointer;
   }
 
+}
+
+.radio-input-selected {
+  border-bottom: 3px solid color(accent);
 }
 
 .icon-wrapper {
@@ -274,6 +306,7 @@ form {
 }
 
 .book-details {
+  position: relative;
   background-color: color(primary);
   margin-right: 10px;
   display: flex;
@@ -282,7 +315,7 @@ form {
   padding: 0 5px;
   cursor: pointer;
 
-  div {
+  .details-box {
     height: 100%;
     display: flex;
     align-items: center;
@@ -296,6 +329,10 @@ form {
     padding-right: 12px;
     margin-left: 8px;
   }
+}
+
+.book-details:active {
+  outline: color(myBlue) solid 1px;
 }
 
 #cabin {
@@ -318,6 +355,7 @@ form {
 
 #personCounter {
   width: 40px;
+
   i {
     position: absolute;
     bottom: 55px;
@@ -349,4 +387,79 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*Component Level Style*/
+
+// DATE PICKER
+.ui-date-picker {
+  position: absolute;
+  font-size: 14px;
+  bottom: -75%;
+  left: 30%;
+  width: 500px;
+  background-color: #FFFFFF;
+  color: color(primary);
+  z-index: 1;
+
+  table {
+    width: auto;
+    display: inline-block;
+    margin-left: 12px;
+    margin-bottom: 18px;
+
+    thead {
+      display: inline-block;
+      padding: 10px 0;
+    }
+
+    th, td {
+      display: inline-block;
+      width: 40px;
+      text-align: center;
+    }
+
+    td {
+      padding: 6px 6px;
+      height: 40px;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+
+    td:hover {
+      background-color: color(primary-light);
+      color: #FFFFFF;
+    }
+  }
+}
+
+.ui-date-picker::before {
+  content: "";
+  border-color: transparent transparent #FFFFFF transparent;
+  border-style: solid;
+  border-width: 0 15px 15px;
+  position: absolute;
+  top: -8px;
+  left: 87%;
+}
+
+.month, .days {
+  font-weight: bold;
+}
+
+.month span {
+  font-weight: lighter;
+  display: block;
+}
+
+.ui-date-picker-week-end {
+  color: color(myBlue);
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }

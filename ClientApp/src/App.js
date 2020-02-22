@@ -9,7 +9,7 @@ import './App.css';
 const App = () => {
 
     const handleOnSubmit = (e, booking) => {
-        //console.log(booking);
+        console.log(booking);
         e.preventDefault();
 
         axios.post('api/flightbookings', booking)

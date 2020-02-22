@@ -65,7 +65,7 @@ a:focus {
   background-image: url("res/bg_img.jpg");
   background-size: cover;
   background-position: center center;
-  height: 564px;
+  height: 600px;
   color: white;
 }
 .main h1 {
@@ -87,7 +87,7 @@ a:focus {
 
 .overlay {
   width: 100%;
-  height: 564px;
+  height: 600px;
   background-color: #333;
   opacity: 0.5;
   position: absolute;
@@ -204,24 +204,52 @@ form > div:nth-child(2) {
   color: #5896EA;
 }
 
+.input-box:nth-child(2) input[type=text]:focus ~ .all-destination {
+  display: block;
+}
+
+.all-destination {
+  display: none;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 25px;
+  right: 26.8%;
+  padding: 4px 2px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  width: 500px;
+  outline: #5896EA solid 1px;
+}
+.all-destination i {
+  margin-left: 25px;
+  margin-right: 6px;
+}
+
+.all-destination:hover {
+  background-color: #5896EA;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
 .booker-menu {
   height: auto;
   margin-bottom: 15px;
   font-size: 14px;
 }
 .booker-menu a {
-  border-bottom: 3px solid transparent;
   margin-right: 15px;
-  padding-bottom: 3px;
-}
-.booker-menu a:first-child {
-  border-bottom: 3px solid #E81932;
+  padding: 0 5px 3px 5px;
 }
 .booker-menu a:last-child {
   float: right;
 }
 .booker-menu label, .booker-menu input {
   cursor: pointer;
+}
+
+.radio-input-selected {
+  border-bottom: 3px solid #E81932;
 }
 
 .icon-wrapper {
@@ -234,6 +262,7 @@ form > div:nth-child(2) {
 }
 
 .book-details {
+  position: relative;
   background-color: #232B38;
   margin-right: 10px;
   display: flex;
@@ -242,7 +271,7 @@ form > div:nth-child(2) {
   padding: 0 5px;
   cursor: pointer;
 }
-.book-details div {
+.book-details .details-box {
   height: 100%;
   display: flex;
   align-items: center;
@@ -254,6 +283,10 @@ form > div:nth-child(2) {
   font-size: 25px;
   padding-right: 12px;
   margin-left: 8px;
+}
+
+.book-details:active {
+  outline: #5896EA solid 1px;
 }
 
 #cabin {
@@ -305,6 +338,74 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*Component Level Style*/
+.ui-date-picker {
+  position: absolute;
+  font-size: 14px;
+  bottom: -75%;
+  left: 30%;
+  width: 500px;
+  background-color: #FFFFFF;
+  color: #232B38;
+  z-index: 1;
+}
+.ui-date-picker table {
+  width: auto;
+  display: inline-block;
+  margin-left: 12px;
+  margin-bottom: 18px;
+}
+.ui-date-picker table thead {
+  display: inline-block;
+  padding: 10px 0;
+}
+.ui-date-picker table th, .ui-date-picker table td {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+.ui-date-picker table td {
+  padding: 6px 6px;
+  height: 40px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.ui-date-picker table td:hover {
+  background-color: #2B3947;
+  color: #FFFFFF;
+}
+
+.ui-date-picker::before {
+  content: "";
+  border-color: transparent transparent #FFFFFF transparent;
+  border-style: solid;
+  border-width: 0 15px 15px;
+  position: absolute;
+  top: -8px;
+  left: 87%;
+}
+
+.month, .days {
+  font-weight: bold;
+}
+
+.month span {
+  font-weight: lighter;
+  display: block;
+}
+
+.ui-date-picker-week-end {
+  color: #5896EA;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 /*# sourceMappingURL=App.css.map */
