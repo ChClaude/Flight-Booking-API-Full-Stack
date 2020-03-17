@@ -1,11 +1,14 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
     return (
         <header>
             <div className="logo">
-                <i className="fab fa-accusoft"/>
-                Century Airlines
+                <Link to="/">
+                    <i className="fab fa-accusoft"/>
+                    Century Airlines
+                </Link>
             </div>
             <nav>
                 <ul>
@@ -17,6 +20,9 @@ const NavBar = () => {
                     </li>
                     <li>
                         <a href="#">Discover</a>
+                    </li>
+                    <li>
+                        <a href="/trips">All Trips*</a>
                     </li>
                     <li>
                         <a href="#">Sign up</a>

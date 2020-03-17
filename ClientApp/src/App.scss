@@ -8,6 +8,7 @@ $colors: (
         primary: #232B38,
         primary-light: #2B3947,
         accent: #E81932,
+        warning: #FF9800,
         myBlue: #5896EA
 );
 
@@ -55,6 +56,26 @@ header {
   }
 }
 
+a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+
 .logo {
   font-size: 20px;
 
@@ -80,11 +101,6 @@ header {
   background-color: lighten(color(primary), 10%);
 }
 
-a:focus {
-  color: #E81932;
-  background-color: color(primary-light);
-  transition: 0.3s ease 0.1s;
-}
 
 .main {
   background-image: url("res/bg_img.jpg");
@@ -108,10 +124,6 @@ a:focus {
   }
 }
 
-.container {
-  padding-right: $padding;
-  padding-left: $padding;
-}
 
 .overlay {
   width: 100%;
@@ -149,23 +161,6 @@ a:focus {
   }
 }
 
-.btn {
-  border-radius: 4px;
-  font-size: 15px;
-  color: #FFF;
-  width: auto;
-  padding: .75em 25px;
-  background-color: rgba(35, 43, 56, .25);
-  border: 1px solid rgba(255, 255, 255, .5);
-  font-weight: 400;
-  cursor: pointer;
-  outline: 0;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, .15);
-  border-color: #fff;
-}
 
 .btn-next {
   width: 75px;
@@ -358,7 +353,7 @@ form {
 
   i {
     position: absolute;
-    bottom: 55px;
+    bottom: 8px;
   }
 
   span {
@@ -387,7 +382,26 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
+
+/*Page Level style*/
+.trips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  height: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  .table-header {
+    margin-bottom: 18px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+
 
 /*Component Level Style*/
 
@@ -462,4 +476,50 @@ footer {
 
 .show {
   display: block;
+}
+
+/*Utility Classes*/
+.container {
+  padding-right: $padding;
+  padding-left: $padding;
+}
+
+%btn {
+  border-radius: 4px;
+  font-size: 15px;
+  color: #FFF;
+  width: auto;
+  padding: .75em 25px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  font-weight: 400;
+  cursor: pointer;
+  outline: 0;
+
+  &:hover {
+    opacity: .85;
+  }
+}
+
+.btn {
+  @extend %btn;
+  background-color: rgba(35, 43, 56, .25);
+
+  &-primary {
+    @extend %btn;
+    background-color: color(primary);
+  }
+
+  &-danger {
+    @extend %btn;
+    background-color: color(accent);
+  }
+
+  &-warning {
+    @extend %btn;
+    background-color: color(warning);
+  }
+}
+
+.card {
+
 }

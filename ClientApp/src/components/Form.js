@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Calendar from "./Calendar";
+import PropTypes from "prop-types";
 
 const Form = (props) => {
 
@@ -66,6 +67,7 @@ const Form = (props) => {
                 "price": 1050
             };
             props.onSubmit(e, booking);
+            setDestination('');
         }}>
             <div className="booker-menu">
                 <a className={bookerMenuRadioClasses.roundTrip}>
@@ -176,6 +178,23 @@ const Form = (props) => {
             </div>
         </form>
     );
+};
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+};
+
+Form.defaultProps = {
+    trip: {
+        "departure": "Cape Town",
+        "destination": "",
+        "departureDate": new Date(),
+        "tripType": "round trip",
+        "returnDate": new Date(),
+        "numberOfPassengers": 1,
+        "cabin": "ECO",
+        "price": 1050
+    }
 };
 
 export default Form;

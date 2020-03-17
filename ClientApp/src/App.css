@@ -32,6 +32,25 @@ header ul li button {
   margin-left: 7px;
 }
 
+a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #eee;
+}
+
 .logo {
   font-size: 20px;
 }
@@ -55,12 +74,6 @@ header ul li button {
   background-color: #374357;
 }
 
-a:focus {
-  color: #E81932;
-  background-color: #2B3947;
-  transition: 0.3s ease 0.1s;
-}
-
 .main {
   background-image: url("res/bg_img.jpg");
   background-size: cover;
@@ -78,11 +91,6 @@ a:focus {
 .main > div:nth-child(2) {
   position: relative;
   padding-top: 30px;
-}
-
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 .overlay {
@@ -116,24 +124,6 @@ a:focus {
   left: 36%;
   width: 0;
   margin-left: -6px;
-}
-
-.btn {
-  border-radius: 4px;
-  font-size: 15px;
-  color: #FFF;
-  width: auto;
-  padding: 0.75em 25px;
-  background-color: rgba(35, 43, 56, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  font-weight: 400;
-  cursor: pointer;
-  outline: 0;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: #fff;
 }
 
 .btn-next {
@@ -312,7 +302,7 @@ form > div:nth-child(2) {
 }
 #personCounter i {
   position: absolute;
-  bottom: 55px;
+  bottom: 8px;
 }
 #personCounter span {
   position: relative;
@@ -338,6 +328,23 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+/*Page Level style*/
+.trips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  height: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.trips .table-header {
+  margin-bottom: 18px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 /*Component Level Style*/
@@ -406,6 +413,40 @@ footer {
 
 .show {
   display: block;
+}
+
+/*Utility Classes*/
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.btn-warning, .btn-danger, .btn-primary, .btn {
+  border-radius: 4px;
+  font-size: 15px;
+  color: #FFF;
+  width: auto;
+  padding: 0.75em 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  cursor: pointer;
+  outline: 0;
+}
+.btn-warning:hover, .btn-danger:hover, .btn-primary:hover, .btn:hover {
+  opacity: 0.85;
+}
+
+.btn {
+  background-color: rgba(35, 43, 56, 0.25);
+}
+.btn-primary {
+  background-color: #232B38;
+}
+.btn-danger {
+  background-color: #E81932;
+}
+.btn-warning {
+  background-color: #FF9800;
 }
 
 /*# sourceMappingURL=App.css.map */

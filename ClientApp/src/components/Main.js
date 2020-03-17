@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import Form from "./Form";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
     return (
@@ -20,6 +21,10 @@ const Main = (props) => {
             </section>
         </Fragment>
     );
+};
+
+Main.propTypes = {
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default Main;
